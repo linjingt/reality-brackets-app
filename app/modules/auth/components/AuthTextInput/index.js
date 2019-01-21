@@ -7,7 +7,7 @@ import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elemen
 import { isEmpty } from '../../utils/validate'
 import styles from "./styles"
 
-class AuthTextInput extends Component {
+class Index extends Component {
     render() {
         const { showLabel, placeholder, autoFocus, onChangeText, secureTextEntry, placeholderTextColor, keyboardType } = this.props;
 
@@ -41,7 +41,7 @@ class AuthTextInput extends Component {
     }
 }
 
-AuthTextInput.propTypes = {
+Index.propTypes = {
     label: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
@@ -54,11 +54,11 @@ AuthTextInput.propTypes = {
     error: PropTypes.string,
 }
 
-AuthTextInput.defaultProps = {
+Index.defaultProps = {
     autoFocus: false,
     secureTextEntry: false,
     placeholderTextColor: "grey",
     keyboardType: "default"
 }
 
-export default AuthTextInput;
+export default Index;

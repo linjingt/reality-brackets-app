@@ -15,7 +15,6 @@ const fields = [
     placeholder: 'Email Address',
     autoFocus: false,
     secureTextEntry: false,
-    value: 'lin.jingt@gmail.com',
     type: 'email',
   },
   {
@@ -24,7 +23,6 @@ const fields = [
     placeholder: 'Username',
     autoFocus: false,
     secureTextEntry: false,
-    value: 'linjingt',
     type: 'text',
   },
   {
@@ -33,7 +31,6 @@ const fields = [
     placeholder: 'Password',
     autoFocus: false,
     secureTextEntry: true,
-    value: '123',
     type: 'password',
   },
   {
@@ -42,7 +39,6 @@ const fields = [
     placeholder: 'Confirm Password',
     autoFocus: false,
     secureTextEntry: true,
-    value: '123',
     type: 'confirm_password',
   },
 ];
