@@ -61,7 +61,7 @@ export function login(data) {
             .child(user.uid)
             .once('value')
             .then(snapshot => {
-              const exists = snapshot.val() !== null;
+              const exists = (snapshot.val() !== null);
               //if user exist in db, replace user variable with returned snapshot
               if (exists) user = snapshot.val();
               if (exists) dispatch({ type: t.LOGGED_IN, user });
