@@ -16,7 +16,6 @@ const fields = [
     placeholder: 'Email Address',
     autoFocus: false,
     secureTextEntry: false,
-    value: 'lin.jingt@gmail.com',
     type: 'email',
   },
   {
@@ -25,7 +24,6 @@ const fields = [
     placeholder: 'Password',
     autoFocus: false,
     secureTextEntry: true,
-    value: '123',
     type: 'password',
   },
 ];
@@ -79,7 +77,7 @@ class Login extends React.Component {
         fields={fields}
         showLabel={false}
         onSubmit={this.onSubmit}
-        buttonTitle={'LOG IN'}
+        buttonTitle='LOG IN'
         error={this.state.error}
         onForgotPassword={this.onForgotPassword}
       />

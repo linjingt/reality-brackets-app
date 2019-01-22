@@ -6,6 +6,7 @@ import {
   Stack,
   Modal,
   Tabs,
+  Actions,
 } from 'react-native-router-flux';
 
 //Splash Component
@@ -17,7 +18,11 @@ import Register from '../modules/auth/scenes/Register';
 import CompleteProfile from '../modules/auth/scenes/CompleteProfile';
 import Login from '../modules/auth/scenes/Login';
 import ForgotPassword from '../modules/auth/scenes/ForgotPassword';
-import Home from '../modules/home/scenes/Home/Home';
+import Home from '../modules/home/scenes/Home';
+import NewComment from '../modules/home/scenes/NewComment';
+
+import NavButton from '../components/NavButton';
+import SaveButton from '../modules/home/components/SaveButton';
 
 //Import Store, actions
 import store from '../redux/store';
@@ -44,51 +49,96 @@ export default class Routes extends React.Component {
     );
   }
 
+  renderAddButton(props) {
+    return (
+      <NavButton
+        onPress={Actions.NewComment}
+        name={'plus'}
+        type={'entypo'}
+        color={color.black}
+      />
+    );
+  }
+
+  renderCloseButton(props) {
+    return (
+      <NavButton
+        onPress={Actions.pop}
+        name={'md-close'}
+        type={'ionicon'}
+        color={color.black}
+      />
+    );
+  }
+
+  renderSaveButton(props) {
+    if (props.showButton) return <SaveButton data={props.data} />;
+    else return null;
+  }
+
   render() {
     if (!this.state.isReady) return <Splash />;
 
     return (
       <Router>
-        <Scene
-          key="root"
-          hideNavBar
-          navigationBarStyle={{ backgroundColor: '#fff' }}
-          titleStyle={navTitleStyle}
-          backButtonTintColor={color.black}
-        >
-          <Stack key="Auth" initial={!this.state.isLoggedIn}>
-            <Scene
-              key="Welcome"
-              component={Welcome}
-              title=""
-              initial={true}
-              hideNavBar
-            />
-            <Scene key="Register" component={Register} title="Register" back />
-            <Scene
-              key="CompleteProfile"
-              component={CompleteProfile}
-              title="Select Username"
-              back={false}
-            />
-            <Scene key="Login" component={Login} title="Login" />
-            <Scene
-              key="ForgotPassword"
-              component={ForgotPassword}
-              title="Forgot Password"
-            />
-          </Stack>
+        <Modal>
+          <Scene
+            key="root"
+            hideNavBar
+            navigationBarStyle={{ backgroundColor: '#fff' }}
+            titleStyle={navTitleStyle}
+            backButtonTintColor={color.black}
+          >
+            <Stack key="Auth" initial={!this.state.isLoggedIn}>
+              <Scene
+                key="Welcome"
+                component={Welcome}
+                title=""
+                initial={true}
+                hideNavBar
+              />
+              <Scene
+                key="Register"
+                component={Register}
+                title="Register"
+                back
+              />
+              <Scene
+                key="CompleteProfile"
+                component={CompleteProfile}
+                title="Select Username"
+                back={false}
+              />
+              <Scene key="Login" component={Login} title="Login" />
+              <Scene
+                key="ForgotPassword"
+                component={ForgotPassword}
+                title="Forgot Password"
+              />
+            </Stack>
 
-          <Stack key="Main" initial={this.state.isLoggedIn}>
-            <Scene
-              key="Home"
-              component={Home}
-              title="Home"
-              initial={true}
-              type={ActionConst.REPLACE}
-            />
-          </Stack>
-        </Scene>
+            <Stack key="Main" initial={this.state.isLoggedIn}>
+              <Scene
+                key="Home"
+                component={Home}
+                title="Home"
+                initial={true}
+                type={ActionConst.REPLACE}
+                renderRightButton={this.renderAddButton}
+              />
+            </Stack>
+          </Scene>
+
+          <Scene
+            key="NewComment"
+            navigationBarStyle={{ backgroundColor: '#fff' }}
+            titleStyle={navTitleStyle}
+            component={NewComment}
+            title="New Comment"
+            renderLeftButton={this.renderCloseButton}
+            renderRightButton={this.renderSaveButton}
+          />
+        </Modal>
       </Router>
     );
   }

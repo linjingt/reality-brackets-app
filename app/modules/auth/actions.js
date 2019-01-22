@@ -29,6 +29,24 @@ export function register(data) {
 }
 
 //create user object in realtime db
+export function createUser(user) {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      const userRef = database.ref().child('users');
+
+      userRef
+        .child(user.uid)
+        .update({ ...user })
+        .then(() => {
+          dispatch({ type: t.LOGGED_IN, user });
+          resolve(user);
+        })
+        .catch(err => reject(err));
+    });
+  };
+}
+
+//sign in user with email and password
 export function login(data) {
   return dispatch => {
     return new Promise((resolve, reject) => {
@@ -43,7 +61,7 @@ export function login(data) {
             .child(user.uid)
             .once('value')
             .then(snapshot => {
-              const exists = snapshot.val() !== null;
+              const exists = (snapshot.val() !== null);
               //if user exist in db, replace user variable with returned snapshot
               if (exists) user = snapshot.val();
               if (exists) dispatch({ type: t.LOGGED_IN, user });
@@ -82,12 +100,13 @@ export function signOut() {
 }
 
 //sign user in using fb
+//takes fb token after access granted and create credential object to pass to firebase to log in user
 export function signInWithFb(fbToken) {
   return dispatch => {
     return new Promise((resolve, reject) => {
       const credential = provider.credential(fbToken);
       auth
-        .signInWithCredential(credential)
+        .signInAndRetrieveDataWithCredential(credential)
         .then(user => {
           //get user obj from realtime db
           database

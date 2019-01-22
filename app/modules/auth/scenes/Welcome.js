@@ -5,17 +5,41 @@ import { Button, SocialIcon, Divider } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import { actions as auth } from '../index';
-const {} = auth;
+import { actions as auth, constants as c } from '../index';
+import { Facebook } from 'expo';
+
+const { signInWithFb } = auth;
 
 import styles from './styles';
 
 class Welcome extends React.Component {
+  //get users permission authorization for fb token
+  onSignInWithFacebook = async () => {
+    const options = { permission: ['public_profile', 'email'] };
+    const { type, token } = await Facebook.logInWithReadPermissionsAsync(
+      c.FACEBOOK_APP_ID,
+      options
+    );
+    //expo's fb function prompts user to log into fb and grant permission. then we call signinwithfb
+
+    if (type === 'success') {
+      this.props
+        .signInWithFb(token)
+        .then(({ exists, user }) => {
+          if (exists) Actions.Main();
+          else Actions.CompleteProfile({ user });
+        })
+        .catch(err => alert(err.message));
+    }
+  };
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Image style={styles.image} source={require('../../../assets/images/tvemoji.png')} />
+          <Image
+            style={styles.image}
+            source={require('../../../assets/images/tvemoji.png')}
+          />
           <Text style={styles.title}>REALITY BRACKETS</Text>
         </View>
 
@@ -24,7 +48,7 @@ class Welcome extends React.Component {
             <SocialIcon
               raised
               button
-              type='facebook'
+              type="facebook"
               title="SIGN UP WITH FACEBOOK"
               iconSize={19}
               style={[styles.containerView, styles.socialButton]}
@@ -62,5 +86,5 @@ class Welcome extends React.Component {
 
 export default connect(
   null,
-  {}
+  {signInWithFb}
 )(Welcome);
