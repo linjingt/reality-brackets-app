@@ -7,8 +7,13 @@ const resizeMode = 'contain';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
-
+  activityIndicator: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+  },
   bottomContainer: {
     backgroundColor: 'white',
     paddingVertical: padding * 3,
