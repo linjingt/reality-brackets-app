@@ -53,7 +53,7 @@ class SaveButton extends React.Component {
       },
     };
 
-    this.props.addcomment(newComment, this.onSuccess, this.onError);
+    this.props.addComment(newComment, this.onSuccess, this.onError);
   }
 
   onSuccess() {

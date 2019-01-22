@@ -82,7 +82,7 @@ class Comment extends React.Component {
       <TouchableOpacity onPress={this.onToggleLove}>
         <View style={styles.buttonContainer}>
           <Icon
-            name={loves && loves[user.uid] ? 'md-heart' : 'md-heart-outline'}
+            name={loves && loves[user.uid] ? 'ios-heart' : 'ios-heart-empty'}
             type="ionicon"
             color="#fff"
             iconStyle={{ height: normalize(20) }}

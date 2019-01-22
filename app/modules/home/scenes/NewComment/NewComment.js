@@ -8,18 +8,17 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 import styles from './styles';
 
 const colors = [
-  '#EB623A',
-  '#FF553F',
-  '#4F6384',
-  '#E9C9B4',
-  '#F7CDC2',
-  '#EFDFC8',
-  '#4E57D4',
-  '#E6A78C',
-  '#FE7D72',
-  '#5096CF',
-  '#F99B70',
-  '#646A6A',
+  '#B07574',
+  '#F5CCB3',
+  '#F3BBAB',
+  '#F2ABAD',
+  '#EB8685',
+  '#D6545C',
+  '#CB4A54',
+  '#9B4354',
+  '#9F5166',
+  '#9F5B7D',
+  '#60454A',
 ];
 
 class NewComment extends React.Component {
