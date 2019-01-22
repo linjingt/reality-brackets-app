@@ -81,13 +81,13 @@ class SaveButton extends React.Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapState(state, props) {
   return {
     user: state.authReducer.user,
   };
 }
 
 export default connect(
-  mapStateToProps,
+  mapState,
   { addComment, updateComment }
 )(SaveButton);

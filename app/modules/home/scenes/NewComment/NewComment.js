@@ -66,11 +66,11 @@ class NewComment extends React.Component {
           <TextInput
             multiline={true}
             onChangeText={this.onChangeText}
-            placeholder={'Enter Comment'}
+            placeholder='Enter Comment'
             style={[styles.textInput, { backgroundColor: this.state.color }]}
             value={this.state.text}
             autoFocus={true}
-            placeholderTextColor={'#ccc'}
+            placeholderTextColor='#ccc'
           />
         </View>
         <View style={styles.bottomContainer}>

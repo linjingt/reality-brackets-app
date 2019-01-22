@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     }),
   },
 
-  quote: {
+  comment: {
     marginBottom: padding * 2,
     flexDirection: 'row',
   },

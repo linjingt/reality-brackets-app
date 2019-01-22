@@ -124,7 +124,7 @@ class Comment extends React.Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapState(state, props) {
   return {
     user: state.authReducer.user,
     comments: state.homeReducer.comments,
@@ -132,6 +132,6 @@ function mapStateToProps(state, props) {
 }
 
 export default connect(
-  mapStateToProps,
+  mapState,
   { deleteComment, toggleLove }
 )(Comment);

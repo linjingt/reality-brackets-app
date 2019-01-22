@@ -6,7 +6,7 @@ import {
   Stack,
   Modal,
   Tabs,
-  Actions
+  Actions,
 } from 'react-native-router-flux';
 
 //Splash Component
@@ -127,17 +127,17 @@ export default class Routes extends React.Component {
                 renderRightButton={this.renderAddButton}
               />
             </Stack>
-
-            <Scene
-              key="NewComment"
-              navigationBarStyle={{ backgroundColor: '#fff' }}
-              titleStyle={navTitleStyle}
-              component={NewComment}
-              title="New Comment"
-              renderLeftButton={this.renderCloseButton}
-              renderRightButton={this.renderSaveButton}
-            />
           </Scene>
+
+          <Scene
+            key="NewComment"
+            navigationBarStyle={{ backgroundColor: '#fff' }}
+            titleStyle={navTitleStyle}
+            component={NewComment}
+            title="New Comment"
+            renderLeftButton={this.renderCloseButton}
+            renderRightButton={this.renderSaveButton}
+          />
         </Modal>
       </Router>
     );
